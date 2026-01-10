@@ -19,9 +19,17 @@ export default function App() {
   const currentQuestion = questions[currentIndex];
 
   const handleAnswer = (choice) => {
-    setSelectedAnswer(choice);
-    setIsCorrect(choice === currentQuestion.answer);
-  };
+  setSelectedAnswer(choice);
+  const correct = choice === currentQuestion.answer;
+  setIsCorrect(correct);
+  
+  // Update stats
+  setTotalAttempted(prev => prev + 1);
+  if (correct) {
+    setCorrectCount(prev => prev + 1);
+  }
+};
+
 
   const nextQuestion = () => {
     setSelectedAnswer(null);

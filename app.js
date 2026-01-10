@@ -11,7 +11,7 @@ const questions = [
   // More questions would be loaded here
 ];
 
-export default function RefereeQuiz() {
+export default function App() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState(null);
   const [isCorrect, setIsCorrect] = useState(null);

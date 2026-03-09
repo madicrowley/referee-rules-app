@@ -64,7 +64,9 @@ export default function App() {
       if (error) {
         console.error("Error:", error);
       } else {
-        setQuestions(data);
+        // SHUFFLE LOGIC: Sort the data randomly before saving to state
+        const shuffled = [...data].sort(() => Math.random() - 0.5);
+        setQuestions(shuffled);
       }
       setLoading(false);
     }

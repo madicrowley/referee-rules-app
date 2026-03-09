@@ -21,6 +21,16 @@ export default function App() {
   const [timerActive, setTimerActive] = useState(false);
 
   // 3. Hooks (The Rules: No early returns before these!)
+  // 4. Game Logic
+  const currentQuestion = questions[currentIndex];
+
+  const nextQuestion = () => {
+    setSelectedAnswer(null);
+    setIsCorrect(null);
+    setTimeLeft(10);
+    setTimerActive(true);
+    setCurrentIndex((prev) => (prev + 1) % questions.length);
+  };
   
   // Wrap this function in useCallback
   const handleAnswer = useCallback((choice) => {
@@ -72,17 +82,6 @@ export default function App() {
       setTimerActive(true);
     }
   }, [currentIndex, loading, questions.length]);
-
-  // 4. Game Logic
-  const currentQuestion = questions[currentIndex];
-
-  const nextQuestion = () => {
-    setSelectedAnswer(null);
-    setIsCorrect(null);
-    setTimeLeft(10);
-    setTimerActive(true);
-    setCurrentIndex((prev) => (prev + 1) % questions.length);
-  };
 
   // 5. Early Returns (Safety Checks)
   if (loading) return <div className="min-h-screen bg-[#121212] flex items-center justify-center text-[#d4af37] font-bold">WHISTLE BLOWING... LOADING RULES...</div>;
